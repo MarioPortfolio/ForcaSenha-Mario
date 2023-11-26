@@ -1,0 +1,21 @@
+body {
+    background: #F5A22C;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin-top: 50px;
+}
+
+#passwordInput {
+  margin-bottom: 10px;
+}
+
+#strengthMeter {
+  width: 200px;
+  margin: 10px auto;
+  height: 20px;
+  height: 100%;
+  transition: width 0.3s ease-in-out;
+  
+  position: relative;
+}
+

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Strength Checker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <label for="passwordInput">Password:</label>
+    <input type="password" id="passwordInput" oninput="checkPasswordStrength()"/>
+
+    <button onclick="togglePasswordVisibility()">Mostrar/Ocultar senha</button>
+
+    <button onclick="clearPassword()">Clear Password</button>
+
+    <div id="strengthMeter">
+      <div></div>
+    </div>
+
+    <div id="strengthText"></div>
+
+    <script>
+      function checkPasswordStrength() {
+        const password = document.getElementById("passwordInput").value;
+
+        let score = 0;
+
+        // Pontuação baseada nas regras
+        score += password.length > 1 ? 1 : 0;
+        score += password.length > 6 ? 2 : 0;
+        score += password.length > 9 ? 3 : 0;
+        score += password.length > 11 ? 4 : 0;
+        score += password.length > 13 ? 5 : 0;
+        score += /\d/.test(password) ? 1 : 0;
+        score += /[A-Z]/.test(password) ? 1 : 0;
+        score += /[a-z]/.test(password) ? 1 : 0;
+        score += /[^a-zA-Z\d]/.test(password) ? 2 : 0;
+
+        // Atualiza a barra de progresso
+        const strengthMeter = document.querySelector("#strengthMeter div");
+        strengthMeter.style.width = (score / 10) * 100 + "%";
+
+        // Exibe a força da senha
+        const strengthText = document.getElementById("strengthText");
+        if (score >= 9) {
+          strengthText.textContent = "Senha Forte";
+        } else if (score > 5) {
+          strengthText.textContent = "Senha Moderada";
+        } else {
+          strengthText.textContent = "Senha Fraca";
+        }
+      }
+
+      function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('passwordInput');
+      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    }
+    function clearPassword() {
+      const passwordInput = document.getElementById('passwordInput');
+      passwordInput.value = '';
+      checkPasswordStrength(); // Atualiza a força da senha após limpar
+    }
+    
+
+    </script>
+  </body>
+</html>
