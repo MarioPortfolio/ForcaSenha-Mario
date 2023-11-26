@@ -7,6 +7,7 @@ body {
 
 #passwordInput {
   margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 #strengthMeter {
@@ -15,7 +16,13 @@ body {
   height: 20px;
   height: 100%;
   transition: width 0.3s ease-in-out;
-  
   position: relative;
+  
+}
+
+#idButton {
+  
+    padding:  8px;
+
 }
 
